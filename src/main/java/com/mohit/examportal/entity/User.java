@@ -27,7 +27,7 @@ public class User {
     private String phone;
     private String about;
     private String profileUrl;
-    private boolean enabled;
+    private boolean enabled=true;
 
     //a user can have many roles
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
