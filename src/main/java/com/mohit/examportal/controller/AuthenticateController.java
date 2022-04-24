@@ -3,6 +3,7 @@ package com.mohit.examportal.controller;
 import com.mohit.examportal.config.JwtUtil;
 import com.mohit.examportal.entity.JwtRequest;
 import com.mohit.examportal.entity.JwtResponse;
+import com.mohit.examportal.entity.User;
 import com.mohit.examportal.helper.UserNotFoundException;
 import com.mohit.examportal.service.implementation.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,12 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
+@CrossOrigin("*")
 public class AuthenticateController {
 
     @Autowired
@@ -59,5 +61,11 @@ public class AuthenticateController {
             throw new Exception("Other Exception::  "+e.getMessage());
         }
 
+    }
+
+    //returns the details of the current user
+    @GetMapping("/current-user")
+    public User getCurrentUser(Principal principal){
+        return ((User)this.userDetailsService.loadUserByUsername(principal.getName()));
     }
 }

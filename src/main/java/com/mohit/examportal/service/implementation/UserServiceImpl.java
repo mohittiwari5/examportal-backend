@@ -2,6 +2,7 @@ package com.mohit.examportal.service.implementation;
 
 import com.mohit.examportal.entity.User;
 import com.mohit.examportal.entity.UserRole;
+import com.mohit.examportal.helper.UserAlreadyPresentException;
 import com.mohit.examportal.repository.RoleRepository;
 import com.mohit.examportal.repository.UserRepository;
 import com.mohit.examportal.service.UserService;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
         User tempUser = this.userRepository.findByUsername(user.getUsername());
         if(tempUser!=null){
             System.out.println("User is already there");
-            throw  new Exception("user already present");
+            throw  new UserAlreadyPresentException("User already Present");
         }
         else {
             //create user
