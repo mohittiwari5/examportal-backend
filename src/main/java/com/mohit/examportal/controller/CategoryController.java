@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin("*")
 public class CategoryController {
 
     @Autowired
@@ -15,15 +16,15 @@ public class CategoryController {
 
     //add category
     @PostMapping("/")
-    public ResponseEntity<?> addcategory(@RequestBody Category category){
+    public ResponseEntity<?> addCategory(@RequestBody Category category){
         Category category1 = this.categoryService.addCategory(category);
         return ResponseEntity.ok(category1);
     }
 
     //get Category
     @GetMapping("/{categoryId}")
-    public Category getCategory(@PathVariable Long caregoryId){
-        return this.categoryService.getCategory(caregoryId);
+    public Category getCategory(@PathVariable Long categoryId){
+        return this.categoryService.getCategory(categoryId);
     }
 
     //get all categories

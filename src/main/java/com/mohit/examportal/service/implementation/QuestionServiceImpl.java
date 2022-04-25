@@ -9,11 +9,13 @@ import com.mohit.examportal.service.CategoryService;
 import com.mohit.examportal.service.QuestionService;
 import com.mohit.examportal.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+@Service
 public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
