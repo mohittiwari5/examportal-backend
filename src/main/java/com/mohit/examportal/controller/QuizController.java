@@ -1,11 +1,14 @@
 package com.mohit.examportal.controller;
 
+import com.mohit.examportal.entity.exam.Category;
 import com.mohit.examportal.entity.exam.Quiz;
 import com.mohit.examportal.repository.QuizRepository;
 import com.mohit.examportal.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/quiz")
@@ -43,6 +46,14 @@ public class QuizController {
     public void deleteQuiz(@PathVariable("quizId") Long quizId ){
         this.quizService.deleteQuiz(quizId);
     }
+
+    @GetMapping("/category/{cid}")
+    public List<Quiz> getQuizzesOfCategory(@PathVariable("cid") Long cid){
+        Category category = new Category();
+        category.setCid(cid);
+        return this.quizService.getQuizzesOfCategory(category);
+    }
+
 
 }
 
