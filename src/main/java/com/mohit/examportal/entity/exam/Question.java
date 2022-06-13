@@ -84,12 +84,11 @@ public class Question {
         this.option4 = option4;
     }
 
-    @JsonIgnore
     public String getAnswer() {
         return answer;
     }
 
-    @JsonProperty("answer")
+
     public void setAnswer(String answer) {
         this.answer = answer;
     }
